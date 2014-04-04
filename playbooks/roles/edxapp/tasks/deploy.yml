@@ -134,6 +134,9 @@
   with_items:
     - pip
 
+# Silly test.
+- wait_for: port=22 delay=10
+    
 - name: Upgrade wheel, distribute
   pip: >
     name={{ item }}

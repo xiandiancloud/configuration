@@ -170,7 +170,6 @@
   - "restart edxapp"
   - "restart edxapp_workers"
 
-# Install the python modules into {{ edxapp_venv_dir }}
 - name : install python base-requirements
   # Need to use shell rather than pip so that we can maintain the context of our current working directory; some
   # requirements are pathed relative to the edx-platform repo. Using the pip from inside the virtual environment implicitly
@@ -179,7 +178,7 @@
     {{ edxapp_venv_dir }}/bin/pip install
     --use-wheel --no-index
     --find-links=http://edx-wheel-test.s3-website-us-east-1.amazonaws.com
-    --exists-action w -r {{ base_requirements_file }}
+    --exists-action w -r {{ local_requirements_file }}
     chdir={{ edxapp_code_dir }}
   sudo_user: "{{ edxapp_user }}"
   environment: "{{ edxapp_environment }}"

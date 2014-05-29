@@ -36,14 +36,6 @@
     - restart ora
     - restart ora_celery
 
-- name: install ease python package
-  shell: >
-    . {{ ora_ease_venv_dir }}/bin/activate; cd {{ ora_ease_code_dir }}; python setup.py install
-  sudo_user: "{{ ora_user }}"
-  notify:
-    - restart ora
-    - restart ora_celery
-
 - name: download and install nltk
   shell: |
       set -e
@@ -54,6 +46,14 @@
         creates={{ ora_data_dir }}/{{ ora_nltk_download_url|basename }}-installed
         chdir={{ ora_data_dir }}
   sudo_user: "{{ common_web_user }}"
+  notify:
+    - restart ora
+    - restart ora_celery
+
+- name: install ease python package
+  shell: >
+    . {{ ora_ease_venv_dir }}/bin/activate; cd {{ ora_ease_code_dir }}; python setup.py install
+  sudo_user: "{{ ora_user }}"
   notify:
     - restart ora
     - restart ora_celery

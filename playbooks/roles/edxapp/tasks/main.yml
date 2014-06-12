@@ -55,7 +55,7 @@
 
 - name: install nodejs-legacy for Ubuntu 14.04
   apt: name="nodejs-legacy" state=present
-  when: ansible_facts.ansible_distribution_release = "trusty"
+  when: ansible_os_family == "Debian" and ansible_lsb.codename == "trusty"
 
 - name: create log directories for service variants
   notify:

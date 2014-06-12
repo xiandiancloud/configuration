@@ -589,7 +589,6 @@ edxapp_debian_pkgs:
   # misc
   - curl
   - ipython
-  - npm
   - ntp
   # for shapely
   - libgeos-dev

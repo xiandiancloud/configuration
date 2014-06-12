@@ -56,9 +56,6 @@
 - name: install nodejs-legacy for Ubuntu 14.04
   apt: name="nodejs-legacy" state=present
   when: ansible_distribution_release = "trusty"
-  notify:
-  - "restart edxapp"
-  - "restart edxapp_worker
 
 - name: create log directories for service variants
   notify:

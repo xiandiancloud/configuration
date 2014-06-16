@@ -53,14 +53,12 @@
   - "restart edxapp"
   - "restart edxapp_workers"
 
-- shell: /usr/bin/uptime
-  register: result
-
-- debug: var=result
-
 - name: install nodejs-legacy for Ubuntu 14.04
-  apt: name="nodejs-legacy" state=present
-# when: ansible_lsb.codename == "trusty"
+  apt: pkg={{','.join(edxapp_ubuntu_14.04_pkgs)}} state=present
+  notify:
+  - "restart edxapp"
+  - "restart edxapp_workers"
+  when: ansible_lsb.codename == "trusty"
 
 - name: create log directories for service variants
   notify:

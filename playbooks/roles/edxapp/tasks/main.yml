@@ -58,7 +58,7 @@
   notify:
   - "restart edxapp"
   - "restart edxapp_workers"
-  when: ansible_lsb.codename == "trusty"
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_release == "trusty"
 
 - name: create log directories for service variants
   notify:

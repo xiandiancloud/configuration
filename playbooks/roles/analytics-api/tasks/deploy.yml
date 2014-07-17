@@ -47,12 +47,12 @@
   environment: "{{ analytics_api_environment }}"
   when: migrate_db is defined and migrate_db|lower == "yes"
 
-- name: run collectstatic
-  shell: >
-    chdir={{ analytics_api_code_dir }}
-    {{ analytics_api_venv_bin }}/python manage.py collectstatic  --noinput
-  sudo_user: "{{ analytics_api_user }}"
-  environment: "{{ analytics_api_environment }}"
+# - name: run collectstatic
+#   shell: >
+#     chdir={{ analytics_api_code_dir }}
+#     {{ analytics_api_venv_bin }}/python manage.py collectstatic  --noinput
+#   sudo_user: "{{ analytics_api_user }}"
+#   environment: "{{ analytics_api_environment }}"
 
 - name: create api users
   shell: >

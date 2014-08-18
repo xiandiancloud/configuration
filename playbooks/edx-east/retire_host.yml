@@ -1,0 +1,23 @@
+- name: Stop all services
+  hosts: all
+  sudo: True
+  gather_facts: False
+  roles:
+    - stop_all_edx_services
+
+- name: Sync the logs to s3
+  hosts: all
+  sudo: True
+  tasks:
+    - name: run log script
+      command: /edx/bin/send-logs-to-s3
+
+- name: Run minos
+  hosts: all
+  sudo: True
+  tasks:
+    - name: run minos
+      command: /edx/app/aws/vens/bin/minos --config /edx/etc/minos.yml --json
+      register: minos
+    - name: echo
+      debug: msg="{{ minos.stdout }}"

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/ssh -o StrictHostKeyChecking=no {% if AWS_GIT_IDENTITY %}-i {{ aws_git_identity }}{% endif %} "$@"

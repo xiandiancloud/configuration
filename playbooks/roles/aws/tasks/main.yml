@@ -21,6 +21,9 @@
 #
 #
 
+- name: gather ec2 facts
+  action: ec2_facts
+  
 - name: create data directories
   file: >
     path={{ item }}
@@ -77,6 +80,14 @@
     src=send-logs-to-s3.j2 mode=0755 owner=root group=root
   when: AWS_S3_LOGS
 
+- name: create minos config
+  template: >
+    dest={{ aws_minos_cfg }}
+    src=edx/etc/minos.yml.j2
+    mode=0755 owner=root group=root
+  #when: AWS_S3_LOGS and AWS_USE_GIT_IDENTITY
+  when: AWS_USE_GIT_IDENTITY
+
 - name: create symlink for s3 log sync script
   file: >
     state=link
@@ -99,3 +110,33 @@
     minute=0
     job={{ aws_s3_sync_script }}
   when: AWS_S3_LOGS
+
+  # Optional auth for git
+- name: create ssh script for git (not authenticated)
+  template: >
+    src=tmp/git-identity.sh.j2 dest={{ aws_git_ssh }}
+    mode=750
+  when: not AWS_USE_GIT_IDENTITY
+
+- name: create ssh script for git (authenticated)
+  template: >
+    src=tmp/git-identity.sh.j2 dest={{ aws_git_ssh }}
+    mode=750
+  when: AWS_USE_GIT_IDENTITY
+
+- name: install read-only ssh key
+  copy: >
+    content="{{ AWS_GIT_IDENTITY }}" dest="{{ aws_git_identity }}"
+    force=yes mode=0600
+  when: AWS_USE_GIT_IDENTITY
+
+- name : install python custom-requirements
+  pip: >
+    name="{{ item }}"
+    virtualenv="{{ aws_venv_dir }}"
+    state=present
+    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }} --exists-action w"
+  environment:
+    GIT_SSH: "{{ aws_git_ssh }}"
+  with_items:
+    - "{{ aws_edx_server_tools_requirement }}"

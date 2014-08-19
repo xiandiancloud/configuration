@@ -80,14 +80,35 @@
     src=send-logs-to-s3.j2 mode=0755 owner=root group=root
   when: AWS_S3_LOGS
 
+- name: create minos config directory
+  file: >
+    path={{ aws_minos_voter_cfg }}
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+
 - name: create minos config
   template: >
     dest={{ aws_minos_cfg }}
-    src=edx/etc/minos.yml.j2
+    src=edx/etc/minos/minos.yml.j2
     mode=0755 owner=root group=root
   #when: AWS_S3_LOGS and AWS_USE_GIT_IDENTITY
   when: AWS_USE_GIT_IDENTITY
-
+  
+- name: create minos voters configs
+  template: >
+    dest={{ aws_minos_voter_cfg }}/{{ item }}.yml
+    src=edx/etc/minos/conf.d/{{ item }}.yml.j2
+    mode=0755 owner=root group=root
+  #when: AWS_S3_LOGS and AWS_USE_GIT_IDENTITY
+  with_items:
+    - "BellwetherVoter"
+    - "ProccessQuienscenceVoterCelery"
+    - "ProccessQuienscenceVoterGunicorn"
+    - "TrackingLogVoter"
+  when: AWS_USE_GIT_IDENTITY
+  
 - name: create symlink for s3 log sync script
   file: >
     state=link

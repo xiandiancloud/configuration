@@ -10,13 +10,13 @@ manage="cd /edx/app/edxapp/edx-platform && sudo -u www-data /edx/bin/python.edxa
 
 echo "$username" > /tmp/username.txt
 
-if [ "$add-remove" = "add" ]; then
+if [ $add-remove=add ]; then
   for x in $(cat /tmp/username.txt); do
-    $ssh ubuntu@"$ip" "$manage lms cert_whitelist -a $x -c $course_id --settings aws"
+    $ssh ubuntu@"$ip" "$manage lms cert_whitelist --add $x -c $course_id --settings aws"
   done
-elif [ "$add-remove" = "remove" ]; then
+elif [ $add-remove=remove ]; then
   for x in $(cat /tmp/username.txt); do
-    $ssh ubuntu@"$ip" "$manage lms cert_whitelist -d $x -c $course_id --settings aws"
+    $ssh ubuntu@"$ip" "$manage lms cert_whitelist --del $x -c $course_id --settings aws"
   done
 fi
 

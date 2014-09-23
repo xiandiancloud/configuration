@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-# Configuration Management(±¾µØ²¿Êð)
-=======
-#ä¿®æ”¹ç›®æ ‡ æœ¬åœ°åŒ–éƒ¨ç½²
-# Configuration Management
->>>>>>> f542c2c4d030183df556427653f75344c95efa34
+# Configuration Management(For Local Deployment)
 
 ## Introduction
 

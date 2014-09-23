@@ -1,0 +1,1814 @@
+
+PLAY [Configure instance(s)] ************************************************** 
+
+GATHERING FACTS *************************************************************** 
+ok: [localhost]
+
+TASK: [user | debug var=user_info] ******************************************** 
+ok: [localhost] => {
+    "item": "", 
+    "user_info": []
+}
+
+TASK: [user | create the edxadmin group] ************************************** 
+ok: [localhost]
+
+TASK: [user | ensure sudoers.d is read] *************************************** 
+ok: [localhost]
+
+TASK: [user | grant full sudo access to the edxadmin group] ******************* 
+ok: [localhost]
+
+TASK: [user | create the users] *********************************************** 
+skipping: [localhost]
+
+TASK: [user | create .ssh directory] ****************************************** 
+skipping: [localhost]
+
+TASK: [user | assign admin role to admin users] ******************************* 
+skipping: [localhost]
+
+TASK: [user | copy github key[s] to .ssh/authorized_keys2] ******************** 
+skipping: [localhost]
+
+TASK: [user | copy additional authorized keys] ******************************** 
+skipping: [localhost]
+
+TASK: [user | create bashrc file for normal users] **************************** 
+skipping: [localhost]
+
+TASK: [user | create .profile for all users] ********************************** 
+skipping: [localhost]
+
+TASK: [user | modify shell for restricted users] ****************************** 
+skipping: [localhost]
+
+TASK: [user | create bashrc file for restricted users] ************************ 
+skipping: [localhost]
+
+TASK: [user | create sudoers file from template] ****************************** 
+ok: [localhost]
+
+TASK: [user | change home directory ownership to root for restricted users] *** 
+skipping: [localhost]
+
+TASK: [user | create ~/bin directory] ***************************************** 
+skipping: [localhost]
+
+TASK: [user | create allowed command links] *********************************** 
+skipping: [localhost]
+
+TASK: [common | Add user www-data] ******************************************** 
+ok: [localhost]
+
+TASK: [common | Create common directories] ************************************ 
+ok: [localhost] => (item=/edx/var)
+ok: [localhost] => (item=/edx/app)
+ok: [localhost] => (item=/edx/bin)
+ok: [localhost] => (item=/edx/etc)
+
+TASK: [common | check if instance is vagrant] ********************************* 
+ok: [localhost]
+
+TASK: [common | Install python-pycurl] **************************************** 
+ok: [localhost]
+
+TASK: [common | Add git apt repository] *************************************** 
+ok: [localhost]
+
+TASK: [common | Install role-independent useful system packages] ************** 
+ok: [localhost]
+
+TASK: [common | Create common log directory] ********************************** 
+ok: [localhost]
+
+TASK: [common | upload sudo config for key forwarding as root] **************** 
+ok: [localhost]
+
+TASK: [common | pip install virtualenv] *************************************** 
+ok: [localhost] => (item=pip==1.5.6)
+ok: [localhost] => (item=setuptools==3.6)
+ok: [localhost] => (item=virtualenv==1.11.6)
+ok: [localhost] => (item=virtualenvwrapper)
+
+TASK: [common | Install rsyslog configuration for edX] ************************ 
+ok: [localhost]
+
+TASK: [common | Remove the default rsyslog configuration] ********************* 
+ok: [localhost]
+
+TASK: [common | Create hourly subdirectory in logrotate.d] ******************** 
+ok: [localhost]
+
+TASK: [common | Install logrotate configuration for edX] ********************** 
+ok: [localhost]
+
+TASK: [common | Install logrotate configuration for tracking file] ************ 
+ok: [localhost]
+
+TASK: [common | Add logrotate for tracking.log to cron.hourly] **************** 
+ok: [localhost]
+
+TASK: [common | update /etc/hosts] ******************************************** 
+skipping: [localhost]
+
+TASK: [common | update /etc/hostname] ***************************************** 
+skipping: [localhost]
+
+TASK: [common | run hostname] ************************************************* 
+skipping: [localhost]
+
+TASK: [common | update /etc/dhcp/dhclient.conf] ******************************* 
+skipping: [localhost]
+
+TASK: [common | update the ssh motd on Ubuntu] ******************************** 
+ok: [localhost] => (item=/etc/update-motd.d/10-help-text)
+ok: [localhost] => (item=/usr/share/landscape/landscape-sysinfo.wrapper)
+ok: [localhost] => (item=/etc/update-motd.d/51-cloudguest)
+ok: [localhost] => (item=/etc/update-motd.d/91-release-upgrade)
+
+TASK: [common | add ssh-warning banner motd] ********************************** 
+ok: [localhost]
+
+TASK: [common | update ssh config] ******************************************** 
+ok: [localhost]
+
+TASK: [nginx | create nginx app dirs] ***************************************** 
+ok: [localhost] => (item=/edx/app/nginx)
+ok: [localhost] => (item=/edx/app/nginx/sites-available)
+ok: [localhost] => (item=/edx/app/nginx/sites-enabled)
+ok: [localhost] => (item=/edx/app/nginx/conf.d)
+
+TASK: [nginx | create nginx data dirs] **************************************** 
+ok: [localhost] => (item=/edx/var/nginx)
+changed: [localhost] => (item=/edx/var/log/nginx)
+
+TASK: [nginx | Install nginx packages] **************************************** 
+ok: [localhost]
+
+TASK: [nginx | Server configuration file] ************************************* 
+ok: [localhost]
+
+TASK: [nginx | Creating common nginx configuration] *************************** 
+ok: [localhost]
+
+TASK: [nginx | Create robot rules] ******************************************** 
+skipping: [localhost]
+
+TASK: [nginx | Creating link for common nginx configuration] ****************** 
+ok: [localhost]
+
+TASK: [nginx | Copying nginx configs for ['cms', 'lms', 'forum', 'ora', 'xqueue']] *** 
+ok: [localhost] => (item=cms)
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=forum)
+ok: [localhost] => (item=ora)
+ok: [localhost] => (item=xqueue)
+
+TASK: [nginx | Creating nginx config links for ['cms', 'lms', 'forum', 'ora', 'xqueue']] *** 
+ok: [localhost] => (item=cms)
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=forum)
+ok: [localhost] => (item=ora)
+ok: [localhost] => (item=xqueue)
+
+TASK: [nginx | Copying nginx extra configs] *********************************** 
+skipping: [localhost]
+
+TASK: [nginx | Creating links for nginx extra configs] ************************ 
+skipping: [localhost]
+
+TASK: [nginx | Copying custom nginx config] *********************************** 
+skipping: [localhost]
+
+TASK: [nginx | Copying nginx redirect configs for {{nginx_redirects}}] ******** 
+skipping: [localhost]
+
+TASK: [nginx | Creating nginx redirect links for {{nginx_redirects}}] ********* 
+skipping: [localhost]
+
+TASK: [nginx | Write out htpasswd file] *************************************** 
+skipping: [localhost]
+
+TASK: [nginx | Create nginx log file location (just in case)] ***************** 
+changed: [localhost]
+
+TASK: [nginx | stat] ********************************************************** 
+ok: [localhost]
+
+TASK: [nginx | stat] ********************************************************** 
+ok: [localhost]
+
+TASK: [nginx | copy ssl cert] ************************************************* 
+skipping: [localhost]
+
+TASK: [nginx | copy ssl key] ************************************************** 
+skipping: [localhost]
+
+TASK: [nginx | Removing default nginx config and restart (enabled)] *********** 
+ok: [localhost]
+
+TASK: [nginx | Set up nginx access log rotation] ****************************** 
+ok: [localhost]
+
+TASK: [nginx | Set up nginx access log rotation] ****************************** 
+ok: [localhost]
+
+TASK: [nginx | make sure nginx has started] *********************************** 
+ok: [localhost]
+
+TASK: [edxlocal | install packages needed for single server] ****************** 
+ok: [localhost]
+
+TASK: [edxlocal | setup the edxapp db user] *********************************** 
+ok: [localhost]
+
+TASK: [edxlocal | create a database for edxapp] ******************************* 
+ok: [localhost]
+
+TASK: [edxlocal | setup the xqueue db user] *********************************** 
+ok: [localhost]
+
+TASK: [edxlocal | create a database for xqueue] ******************************* 
+ok: [localhost]
+
+TASK: [edxlocal | setup the ora db user] ************************************** 
+ok: [localhost]
+
+TASK: [edxlocal | create a database for ora] ********************************** 
+ok: [localhost]
+
+TASK: [edxlocal | create databases for analytics api] ************************* 
+skipping: [localhost] => (item={{ANALYTICS_API_CONFIG['DATABASES']['default']['NAME']}})
+skipping: [localhost] => (item={{ANALYTICS_API_CONFIG['DATABASES']['reports']['NAME']}})
+
+TASK: [edxlocal | create api user for the analytics api] ********************** 
+skipping: [localhost]
+
+TASK: [edxlocal | create read-only reports user for the analytics-api] ******** 
+skipping: [localhost]
+
+TASK: [edxlocal | setup the migration db user] ******************************** 
+ok: [localhost] => (item=edxapp)
+ok: [localhost] => (item=xqueue)
+ok: [localhost] => (item=ora)
+
+TASK: [edxlocal | setup the migration db user for analytics] ****************** 
+skipping: [localhost] => (item={{ANALYTICS_API_CONFIG['DATABASES']['default']['NAME']}})
+skipping: [localhost] => (item={{ANALYTICS_API_CONFIG['DATABASES']['reports']['NAME']}})
+
+TASK: [edxlocal | setup the read-only db user] ******************************** 
+ok: [localhost]
+
+TASK: [edxlocal | setup the admin db user] ************************************ 
+ok: [localhost]
+
+TASK: [edxlocal | install memcached] ****************************************** 
+ok: [localhost]
+
+TASK: [mongo | install python pymongo for mongo_user ansible module] ********** 
+ok: [localhost]
+
+TASK: [mongo | add the mongodb signing key] *********************************** 
+ok: [localhost]
+
+TASK: [mongo | add the mongodb repo to the sources list] ********************** 
+ok: [localhost]
+
+TASK: [mongo | install mongo server and recommends] *************************** 
+ok: [localhost]
+
+TASK: [mongo | create mongo dirs] ********************************************* 
+ok: [localhost] => (item=/edx/var/mongo)
+ok: [localhost] => (item=/edx/var/mongo/mongodb)
+ok: [localhost] => (item=/edx/var/log/mongo)
+
+TASK: [mongo | stop mongo service] ******************************************** 
+changed: [localhost]
+
+TASK: [mongo | move mongodb to {{mongo_data_dir}}] **************************** 
+skipping: [localhost]
+
+TASK: [mongo | copy mongodb key file] ***************************************** 
+skipping: [localhost]
+
+TASK: [mongo | copy configuration template] *********************************** 
+ok: [localhost]
+
+TASK: [mongo | start mongo service] ******************************************* 
+changed: [localhost]
+
+TASK: [mongo | wait for mongo server to start] ******************************** 
+ok: [localhost]
+
+TASK: [mongo | Create the file to initialize the mongod replica set] ********** 
+skipping: [localhost]
+
+TASK: [mongo | Initialize the replication set] ******************************** 
+skipping: [localhost]
+
+TASK: [mongo | create a mongodb user] ***************************************** 
+skipping: [localhost] => (item={'password': 'password', 'user': 'cs_comments_service', 'database': 'cs_comments_service'})
+skipping: [localhost] => (item={'password': 'password', 'user': 'edxapp', 'database': 'edxapp'})
+
+TASK: [supervisor | create application user] ********************************** 
+ok: [localhost]
+
+TASK: [supervisor | create supervisor service user] *************************** 
+ok: [localhost]
+
+TASK: [supervisor | create supervisor directories] **************************** 
+ok: [localhost] => (item=/edx/app/supervisor)
+ok: [localhost] => (item=/edx/app/supervisor/venvs/supervisor)
+
+TASK: [supervisor | create service user accessible dirs] ********************** 
+ok: [localhost] => (item=/edx/app/supervisor/conf.d)
+ok: [localhost] => (item=/edx/app/supervisor/conf.available.d)
+
+TASK: [supervisor | create supervisor directories] **************************** 
+ok: [localhost] => (item=/edx/var/supervisor)
+ok: [localhost] => (item=/edx/var/log/supervisor)
+
+TASK: [supervisor | install supervisor in its venv] *************************** 
+ok: [localhost]
+
+TASK: [supervisor | install supervisor in its venv] *************************** 
+ok: [localhost] => (item=boto)
+ok: [localhost] => (item=python-simple-hipchat)
+
+TASK: [supervisor | create supervisor upstart job] **************************** 
+ok: [localhost]
+
+TASK: [supervisor | create pre_supervisor upstart job] ************************ 
+skipping: [localhost]
+
+TASK: [supervisor | write the pre_suprevisor python script] ******************* 
+skipping: [localhost]
+
+TASK: [supervisor | create supervisor master config] ************************** 
+ok: [localhost]
+
+TASK: [supervisor | create a symlink for supervisortctl] ********************** 
+ok: [localhost]
+
+TASK: [supervisor | create a symlink for supervisor cfg] ********************** 
+ok: [localhost] => (item=/edx/app/supervisor/supervisord.conf)
+ok: [localhost] => (item=/edx/app/supervisor/conf.d)
+
+TASK: [supervisor | start supervisor] ***************************************** 
+ok: [localhost]
+
+TASK: [supervisor | wait for web port to be available] ************************ 
+skipping: [localhost]
+
+TASK: [supervisor | update supervisor configuration] ************************** 
+ok: [localhost]
+
+TASK: [rbenv | fail rbenv_user required for role] ***************************** 
+skipping: [localhost]
+
+TASK: [rbenv | fail rbenv_dir required for role] ****************************** 
+skipping: [localhost]
+
+TASK: [rbenv | fail rbenv_ruby_version required for role] ********************* 
+skipping: [localhost]
+
+TASK: [rbenv | create rbenv user {{edxapp_user}}] ***************************** 
+ok: [localhost]
+
+TASK: [rbenv | create rbenv dir if it does not exist] ************************* 
+ok: [localhost]
+
+TASK: [rbenv | install build depends] ***************************************** 
+ok: [localhost] => (item=curl,build-essential,libcurl4-openssl-dev,libreadline-dev,libssl-dev,libxml2-dev,libxslt1-dev,zlib1g-dev)
+
+TASK: [rbenv | update rbenv repo] ********************************************* 
+changed: [localhost]
+
+TASK: [rbenv | ensure ruby_env exists] **************************************** 
+ok: [localhost]
+
+TASK: [rbenv | check ruby-build installed] ************************************ 
+changed: [localhost]
+
+TASK: [rbenv | if ruby-build exists, which versions we can install] *********** 
+changed: [localhost]
+
+TASK: [rbenv | create temporary directory] ************************************ 
+changed: [localhost]
+
+TASK: [rbenv | clone ruby-build repo] ***************************************** 
+changed: [localhost]
+
+TASK: [rbenv | install ruby-build] ******************************************** 
+changed: [localhost]
+
+TASK: [rbenv | remove temporary directory] ************************************ 
+changed: [localhost]
+
+TASK: [rbenv | check ruby {{edxapp_ruby_version}} installed] ****************** 
+changed: [localhost]
+
+TASK: [rbenv | install ruby {{edxapp_ruby_version}}] ************************** 
+skipping: [localhost]
+
+TASK: [rbenv | set global ruby {{edxapp_ruby_version}}] *********************** 
+changed: [localhost]
+
+TASK: [rbenv | install bundler] *********************************************** 
+changed: [localhost]
+
+TASK: [rbenv | remove rbenv version of rake] ********************************** 
+ok: [localhost]
+
+TASK: [rbenv | install rake gem] ********************************************** 
+changed: [localhost]
+
+TASK: [rbenv | rehash] ******************************************************** 
+changed: [localhost]
+
+TASK: [supervisor | create application user] ********************************** 
+ok: [localhost]
+
+TASK: [supervisor | create supervisor service user] *************************** 
+ok: [localhost]
+
+TASK: [supervisor | create supervisor directories] **************************** 
+ok: [localhost] => (item=/edx/app/devpi/supervisor)
+ok: [localhost] => (item=/edx/app/devpi/venvs/supervisor)
+
+TASK: [supervisor | create service user accessible dirs] ********************** 
+ok: [localhost] => (item=/edx/app/devpi/supervisor/conf.d)
+ok: [localhost] => (item=/edx/app/devpi/supervisor/conf.available.d)
+
+TASK: [supervisor | create supervisor directories] **************************** 
+ok: [localhost] => (item=/edx/var/devpi/supervisor)
+ok: [localhost] => (item=/edx/var/log/devpi/supervisor)
+
+TASK: [supervisor | install supervisor in its venv] *************************** 
+ok: [localhost]
+
+TASK: [supervisor | install supervisor in its venv] *************************** 
+ok: [localhost] => (item=boto)
+ok: [localhost] => (item=python-simple-hipchat)
+
+TASK: [supervisor | create supervisor upstart job] **************************** 
+ok: [localhost]
+
+TASK: [supervisor | create pre_supervisor upstart job] ************************ 
+skipping: [localhost]
+
+TASK: [supervisor | write the pre_suprevisor python script] ******************* 
+skipping: [localhost]
+
+TASK: [supervisor | create supervisor master config] ************************** 
+ok: [localhost]
+
+TASK: [supervisor | create a symlink for supervisortctl] ********************** 
+skipping: [localhost]
+
+TASK: [supervisor | create a symlink for supervisor cfg] ********************** 
+skipping: [localhost] => (item=/edx/app/devpi/supervisor/supervisord.conf)
+skipping: [localhost] => (item=/edx/app/devpi/supervisor/conf.d)
+
+TASK: [supervisor | start supervisor] ***************************************** 
+ok: [localhost]
+
+TASK: [supervisor | wait for web port to be available] ************************ 
+skipping: [localhost]
+
+TASK: [supervisor | update supervisor configuration] ************************** 
+ok: [localhost]
+
+TASK: [devpi | create devpi user] ********************************************* 
+ok: [localhost]
+
+TASK: [devpi | create devpi application directories] ************************** 
+ok: [localhost] => (item=/edx/app/devpi)
+ok: [localhost] => (item=/edx/app/devpi/venvs/devpi)
+
+TASK: [devpi | create the devpi data directory, needs write access by the service user] *** 
+ok: [localhost] => (item=/edx/var/devpi)
+ok: [localhost] => (item=/edx/var/devpi/data)
+
+TASK: [devpi | install devpi pip pkgs] **************************************** 
+ok: [localhost] => (item=devpi-server)
+ok: [localhost] => (item=eventlet)
+
+TASK: [devpi | writing supervisor script] ************************************* 
+ok: [localhost]
+
+TASK: [devpi | create a symlink for venv python, pip] ************************* 
+ok: [localhost] => (item=python)
+ok: [localhost] => (item=pip)
+
+TASK: [devpi | create a symlink for venv supervisor] ************************** 
+ok: [localhost]
+
+TASK: [devpi | create a symlink for supervisor config] ************************ 
+ok: [localhost]
+
+TASK: [devpi | update devpi supervisor configuration] ************************* 
+ok: [localhost]
+
+TASK: [devpi | ensure devpi is started] *************************************** 
+ok: [localhost]
+
+TASK: [nltk | Install unzip] ************************************************** 
+ok: [localhost]
+
+TASK: [nltk | create the nltk data directory and subdirectories] ************** 
+ok: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/taggers/maxent_treebank_pos_tagger.zip', 'path': 'taggers/maxent_treebank_pos_tagger'})
+ok: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/corpora/stopwords.zip', 'path': 'corpora/stopwords'})
+ok: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/corpora/wordnet.zip', 'path': 'corpora/wordnet'})
+
+TASK: [nltk | download nltk data] ********************************************* 
+ok: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/taggers/maxent_treebank_pos_tagger.zip', 'path': 'taggers/maxent_treebank_pos_tagger'})
+ok: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/corpora/stopwords.zip', 'path': 'corpora/stopwords'})
+ok: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/corpora/wordnet.zip', 'path': 'corpora/wordnet'})
+
+TASK: [nltk | unarchive nltk data] ******************************************** 
+skipping: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/taggers/maxent_treebank_pos_tagger.zip', 'path': 'taggers/maxent_treebank_pos_tagger'})
+skipping: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/corpora/stopwords.zip', 'path': 'corpora/stopwords'})
+skipping: [localhost] => (item={'url': 'http://nltk.github.com/nltk_data/packages/corpora/wordnet.zip', 'path': 'corpora/wordnet'})
+
+TASK: [user | debug var=user_info] ******************************************** 
+skipping: [localhost]
+
+TASK: [user | create the edxadmin group] ************************************** 
+skipping: [localhost]
+
+TASK: [user | ensure sudoers.d is read] *************************************** 
+skipping: [localhost]
+
+TASK: [user | grant full sudo access to the edxadmin group] ******************* 
+skipping: [localhost]
+
+TASK: [user | create the users] *********************************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create .ssh directory] ****************************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | assign admin role to admin users] ******************************* 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | copy github key[s] to .ssh/authorized_keys2] ******************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | copy additional authorized keys] ******************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create bashrc file for normal users] **************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create .profile for all users] ********************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | modify shell for restricted users] ****************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create bashrc file for restricted users] ************************ 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create sudoers file from template] ****************************** 
+skipping: [localhost]
+
+TASK: [user | change home directory ownership to root for restricted users] *** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create ~/bin directory] ***************************************** 
+skipping: [localhost] => (item={'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []})
+
+TASK: [user | create allowed command links] *********************************** 
+skipping: [localhost] => (item=[{'sudo_cmds': [u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms migrate *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp cms syncdb *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms seed_permissions_roles *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms set_staff *', u'ALL=(www-data)  NOPASSWD:SETENV:/edx/bin/python.edxapp /edx/bin/manage.edxapp lms transfer_students *'], 'type': 'restricted', 'name': u'automator', 'authorized_keys': []}, '/usr/bin/sudo'])
+
+TASK: [edxapp | create application user] ************************************** 
+ok: [localhost]
+
+TASK: [edxapp | create edxapp user dirs] ************************************** 
+ok: [localhost] => (item=/edx/app/edxapp)
+ok: [localhost] => (item=/edx/app/edxapp/.ssh)
+ok: [localhost] => (item=/edx/var/edxapp)
+ok: [localhost] => (item=/edx/app/edxapp/venvs)
+ok: [localhost] => (item=/edx/var/edxapp/themes)
+ok: [localhost] => (item=/edx/var/edxapp/staticfiles)
+ok: [localhost] => (item=/edx/var/edxapp/course_static)
+
+TASK: [edxapp | make the course data dir] ************************************* 
+ok: [localhost]
+
+TASK: [edxapp | create edxapp log dir] **************************************** 
+ok: [localhost]
+
+TASK: [edxapp | create web-writable edxapp data dirs] ************************* 
+ok: [localhost] => (item=/edx/var/edxapp/data)
+ok: [localhost] => (item=/edx/var/edxapp/uploads)
+
+TASK: [edxapp | add ppas for current versions of nodejs] ********************** 
+ok: [localhost]
+
+TASK: [edxapp | install system packages on which LMS and CMS rely] ************ 
+ok: [localhost]
+
+TASK: [edxapp | create log directories for service variants] ****************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | code sandbox | Create edxapp sandbox user] ******************** 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | Install apparmor utils system pkg] ************* 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | write out apparmor code sandbox config] ******** 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | write out sandbox user sudoers config] ********* 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | start apparmor service] ************************ 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | (bootstrap) load code sandbox profile] ********* 
+changed: [localhost]
+
+TASK: [edxapp | code sandbox | (bootstrap) put code sandbox into aa-enforce or aa-complain mode depending on EDXAPP_SANDBOX_ENFORCE] *** 
+changed: [localhost]
+
+TASK: [edxapp | setup the edxapp env] ***************************************** 
+ok: [localhost]
+
+TASK: [edxapp | create ssh script for git (not authenticated)] **************** 
+ok: [localhost]
+
+TASK: [edxapp | create ssh script for git (authenticated)] ******************** 
+skipping: [localhost]
+
+TASK: [edxapp | install read-only ssh key] ************************************ 
+skipping: [localhost]
+
+TASK: [edxapp | checkout edx-platform repo into {{edxapp_code_dir}}] ********** 
+ok: [localhost]
+
+TASK: [edxapp | git clean after checking out edx-platform] ******************** 
+changed: [localhost]
+
+TASK: [edxapp | checkout theme] *********************************************** 
+skipping: [localhost]
+
+TASK: [edxapp | create checksum for requirements, package.json and Gemfile] *** 
+failed: [localhost] => {"changed": true, "cmd": "/usr/bin/md5sum /edx/app/edxapp/edx-platform/requirements/edx/pre.txt /edx/app/edxapp/edx-platform/requirements/edx/post.txt /edx/app/edxapp/edx-platform/requirements/edx/base.txt /edx/app/edxapp/edx-platform/requirements/edx/custom.txt /edx/app/edxapp/edx-platform/requirements/edx/paver.txt /edx/app/edxapp/edx-platform/requirements/edx-sandbox/post.txt /edx/app/edxapp/edx-platform/requirements/edx-sandbox/base.txt 2>/dev/null > /var/tmp/edxapp.req.new ", "delta": "0:00:00.003687", "end": "2014-09-23 02:08:13.601450", "item": "", "rc": 1, "start": "2014-09-23 02:08:13.597763"}
+...ignoring
+
+TASK: [edxapp | stat path=/var/tmp/edxapp.req.new] **************************** 
+ok: [localhost]
+
+TASK: [edxapp | stat path=/var/tmp/edxapp.req.installed] ********************** 
+ok: [localhost]
+
+TASK: [edxapp | Updating requirement files for git mirror] ******************** 
+changed: [localhost]
+
+TASK: [edxapp | gem install bundler] ****************************************** 
+changed: [localhost]
+
+TASK: [edxapp | bundle install] *********************************************** 
+changed: [localhost]
+
+TASK: [edxapp | Set the npm registry] ***************************************** 
+changed: [localhost]
+
+TASK: [edxapp | Set the npm registry permissions] ***************************** 
+ok: [localhost]
+
+TASK: [edxapp | Install edx-platform npm dependencies] ************************ 
+changed: [localhost]
+
+TASK: [edxapp | install python pre-requirements] ****************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python base-requirements] ***************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python post-requirements] ***************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python paver-requirements] **************************** 
+skipping: [localhost]
+
+TASK: [edxapp | stat path="{{custom_requirements_file}}"] ********************* 
+ok: [localhost]
+
+TASK: [edxapp | install python custom-requirements] *************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python post-post requirements] ************************ 
+changed: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx/github.txt)
+changed: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx/local.txt)
+
+TASK: [edxapp | install python private requirements] ************************** 
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx/edx-private.txt)
+
+TASK: [edxapp | install CAS attribute module] ********************************* 
+skipping: [localhost]
+
+TASK: [edxapp | install sandbox requirements into regular venv] *************** 
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/base.txt)
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/local.txt)
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/post.txt)
+
+TASK: [edxapp | code sandbox | put sandbox apparmor profile in complain mode] *** 
+changed: [localhost]
+
+TASK: [edxapp | code sandbox | Install base sandbox requirements and create sandbox virtualenv] *** 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | Install sandbox requirements into sandbox venv] *** 
+ok: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/local.txt)
+ok: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/post.txt)
+
+TASK: [edxapp | code sandbox | put code sandbox into aa-enforce or aa-complain mode, depending on EDXAPP_SANDBOX_ENFORCE] *** 
+changed: [localhost]
+
+TASK: [edxapp | compiling all py files in the edx-platform repo] ************** 
+changed: [localhost]
+
+TASK: [edxapp | give other read permissions to the virtualenv] **************** 
+changed: [localhost]
+
+TASK: [edxapp | create checksum for installed requirements] ******************* 
+changed: [localhost]
+
+TASK: [edxapp | openid workaround] ******************************************** 
+changed: [localhost]
+
+TASK: [edxapp | get s3 one time url] ****************************************** 
+skipping: [localhost]
+
+TASK: [edxapp | download from one time url] *********************************** 
+skipping: [localhost]
+
+TASK: [edxapp | unzip the data to the data dir] ******************************* 
+skipping: [localhost]
+
+TASK: [edxapp | make the course data web user writable] *********************** 
+ok: [localhost]
+
+TASK: [edxapp | create  application config] *********************************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | create  auth file] ******************************************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | writing  supervisor script] *********************************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | writing edxapp supervisor script] ***************************** 
+ok: [localhost]
+
+TASK: [edxapp | writing celery worker supervisor script] ********************** 
+ok: [localhost]
+
+TASK: [edxapp | enable  supervisor script] ************************************ 
+skipping: [localhost] => (item=lms)
+skipping: [localhost] => (item=cms)
+
+TASK: [edxapp | enable edxapp supervisor script] ****************************** 
+skipping: [localhost]
+
+TASK: [edxapp | enable celery worker supervisor script] *********************** 
+ok: [localhost]
+
+TASK: [edxapp | syncdb and migrate] ******************************************* 
+changed: [localhost] => (item=lms)
+changed: [localhost] => (item=cms)
+
+TASK: [edxapp | gather  static assets with paver] ***************************** 
+skipping: [localhost] => (item=lms)
+skipping: [localhost] => (item=cms)
+
+TASK: [edxapp | clone the xml course repo] ************************************ 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | update course.xml] ******************************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | make symlinks for the static data] **************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | make symlinks so code works] ********************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | import courses with nostatic flag] **************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | import courses including static data] ************************* 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | delete courses that were fully imported] ********************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | create an archive of course data and course static dirs] ****** 
+skipping: [localhost]
+
+TASK: [edxapp | upload archive to s3] ***************************************** 
+skipping: [localhost]
+
+TASK: [edxapp | remove archive from disk] ************************************* 
+skipping: [localhost]
+
+TASK: [edxapp | update supervisor configuration] ****************************** 
+ok: [localhost]
+
+TASK: [edxapp | ensure edxapp has started] ************************************ 
+skipping: [localhost] => (item=lms)
+skipping: [localhost] => (item=cms)
+
+TASK: [edxapp | ensure edxapp_workers has started] **************************** 
+ok: [localhost] => (item={'queue': 'low', 'service_variant': 'cms', 'concurrency': 3})
+ok: [localhost] => (item={'queue': 'default', 'service_variant': 'cms', 'concurrency': 4})
+ok: [localhost] => (item={'queue': 'high', 'service_variant': 'cms', 'concurrency': 1})
+ok: [localhost] => (item={'queue': 'low', 'service_variant': 'lms', 'concurrency': 1})
+ok: [localhost] => (item={'queue': 'default', 'service_variant': 'lms', 'concurrency': 3})
+ok: [localhost] => (item={'queue': 'high', 'service_variant': 'lms', 'concurrency': 4})
+ok: [localhost] => (item={'queue': 'high_mem', 'service_variant': 'lms', 'concurrency': 2})
+
+TASK: [edxapp | create symlinks from the venv bin dir] ************************ 
+ok: [localhost] => (item=python)
+ok: [localhost] => (item=pip)
+ok: [localhost] => (item=django-admin.py)
+
+TASK: [edxapp | create symlinks from the repo dir] **************************** 
+ok: [localhost] => (item=manage.py)
+
+TASK: [edxapp | remove read-only ssh key] ************************************* 
+skipping: [localhost]
+
+TASK: [edxapp | get instance information] ************************************* 
+skipping: [localhost]
+
+TASK: [edxapp | tag instance with edx_platform version] *********************** 
+skipping: [localhost]
+
+TASK: [edxapp | tag instance  with edxapp theme version] ********************** 
+skipping: [localhost]
+
+TASK: [edxapp | set_fact edxapp_installed=true] ******************************* 
+ok: [localhost]
+
+TASK: [edxapp | create application user] ************************************** 
+ok: [localhost]
+
+TASK: [edxapp | create edxapp user dirs] ************************************** 
+ok: [localhost] => (item=/edx/app/edxapp)
+ok: [localhost] => (item=/edx/app/edxapp/.ssh)
+ok: [localhost] => (item=/edx/var/edxapp)
+ok: [localhost] => (item=/edx/app/edxapp/venvs)
+ok: [localhost] => (item=/edx/var/edxapp/themes)
+ok: [localhost] => (item=/edx/var/edxapp/staticfiles)
+ok: [localhost] => (item=/edx/var/edxapp/course_static)
+
+TASK: [edxapp | make the course data dir] ************************************* 
+ok: [localhost]
+
+TASK: [edxapp | create edxapp log dir] **************************************** 
+ok: [localhost]
+
+TASK: [edxapp | create web-writable edxapp data dirs] ************************* 
+ok: [localhost] => (item=/edx/var/edxapp/data)
+ok: [localhost] => (item=/edx/var/edxapp/uploads)
+
+TASK: [edxapp | add ppas for current versions of nodejs] ********************** 
+ok: [localhost]
+
+TASK: [edxapp | install system packages on which LMS and CMS rely] ************ 
+ok: [localhost]
+
+TASK: [edxapp | create log directories for service variants] ****************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | code sandbox | Create edxapp sandbox user] ******************** 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | Install apparmor utils system pkg] ************* 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | write out apparmor code sandbox config] ******** 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | write out sandbox user sudoers config] ********* 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | start apparmor service] ************************ 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | (bootstrap) load code sandbox profile] ********* 
+changed: [localhost]
+
+TASK: [edxapp | code sandbox | (bootstrap) put code sandbox into aa-enforce or aa-complain mode depending on EDXAPP_SANDBOX_ENFORCE] *** 
+changed: [localhost]
+
+TASK: [edxapp | setup the edxapp env] ***************************************** 
+ok: [localhost]
+
+TASK: [edxapp | create ssh script for git (not authenticated)] **************** 
+ok: [localhost]
+
+TASK: [edxapp | create ssh script for git (authenticated)] ******************** 
+skipping: [localhost]
+
+TASK: [edxapp | install read-only ssh key] ************************************ 
+skipping: [localhost]
+
+TASK: [edxapp | checkout edx-platform repo into {{edxapp_code_dir}}] ********** 
+ok: [localhost]
+
+TASK: [edxapp | git clean after checking out edx-platform] ******************** 
+changed: [localhost]
+
+TASK: [edxapp | checkout theme] *********************************************** 
+skipping: [localhost]
+
+TASK: [edxapp | create checksum for requirements, package.json and Gemfile] *** 
+failed: [localhost] => {"changed": true, "cmd": "/usr/bin/md5sum /edx/app/edxapp/edx-platform/requirements/edx/pre.txt /edx/app/edxapp/edx-platform/requirements/edx/post.txt /edx/app/edxapp/edx-platform/requirements/edx/base.txt /edx/app/edxapp/edx-platform/requirements/edx/custom.txt /edx/app/edxapp/edx-platform/requirements/edx/paver.txt /edx/app/edxapp/edx-platform/requirements/edx-sandbox/post.txt /edx/app/edxapp/edx-platform/requirements/edx-sandbox/base.txt 2>/dev/null > /var/tmp/edxapp.req.new ", "delta": "0:00:00.003240", "end": "2014-09-23 02:10:41.757363", "item": "", "rc": 1, "start": "2014-09-23 02:10:41.754123"}
+...ignoring
+
+TASK: [edxapp | stat path=/var/tmp/edxapp.req.new] **************************** 
+ok: [localhost]
+
+TASK: [edxapp | stat path=/var/tmp/edxapp.req.installed] ********************** 
+ok: [localhost]
+
+TASK: [edxapp | Updating requirement files for git mirror] ******************** 
+changed: [localhost]
+
+TASK: [edxapp | gem install bundler] ****************************************** 
+changed: [localhost]
+
+TASK: [edxapp | bundle install] *********************************************** 
+changed: [localhost]
+
+TASK: [edxapp | Set the npm registry] ***************************************** 
+changed: [localhost]
+
+TASK: [edxapp | Set the npm registry permissions] ***************************** 
+ok: [localhost]
+
+TASK: [edxapp | Install edx-platform npm dependencies] ************************ 
+changed: [localhost]
+
+TASK: [edxapp | install python pre-requirements] ****************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python base-requirements] ***************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python post-requirements] ***************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python paver-requirements] **************************** 
+skipping: [localhost]
+
+TASK: [edxapp | stat path="{{custom_requirements_file}}"] ********************* 
+ok: [localhost]
+
+TASK: [edxapp | install python custom-requirements] *************************** 
+skipping: [localhost]
+
+TASK: [edxapp | install python post-post requirements] ************************ 
+changed: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx/github.txt)
+changed: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx/local.txt)
+
+TASK: [edxapp | install python private requirements] ************************** 
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx/edx-private.txt)
+
+TASK: [edxapp | install CAS attribute module] ********************************* 
+skipping: [localhost]
+
+TASK: [edxapp | install sandbox requirements into regular venv] *************** 
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/base.txt)
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/local.txt)
+skipping: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/post.txt)
+
+TASK: [edxapp | code sandbox | put sandbox apparmor profile in complain mode] *** 
+changed: [localhost]
+
+TASK: [edxapp | code sandbox | Install base sandbox requirements and create sandbox virtualenv] *** 
+ok: [localhost]
+
+TASK: [edxapp | code sandbox | Install sandbox requirements into sandbox venv] *** 
+ok: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/local.txt)
+ok: [localhost] => (item=/edx/app/edxapp/edx-platform/requirements/edx-sandbox/post.txt)
+
+TASK: [edxapp | code sandbox | put code sandbox into aa-enforce or aa-complain mode, depending on EDXAPP_SANDBOX_ENFORCE] *** 
+changed: [localhost]
+
+TASK: [edxapp | compiling all py files in the edx-platform repo] ************** 
+changed: [localhost]
+
+TASK: [edxapp | give other read permissions to the virtualenv] **************** 
+changed: [localhost]
+
+TASK: [edxapp | create checksum for installed requirements] ******************* 
+changed: [localhost]
+
+TASK: [edxapp | openid workaround] ******************************************** 
+changed: [localhost]
+
+TASK: [edxapp | get s3 one time url] ****************************************** 
+skipping: [localhost]
+
+TASK: [edxapp | download from one time url] *********************************** 
+skipping: [localhost]
+
+TASK: [edxapp | unzip the data to the data dir] ******************************* 
+skipping: [localhost]
+
+TASK: [edxapp | make the course data web user writable] *********************** 
+ok: [localhost]
+
+TASK: [edxapp | create  application config] *********************************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | create  auth file] ******************************************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | writing  supervisor script] *********************************** 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | writing edxapp supervisor script] ***************************** 
+ok: [localhost]
+
+TASK: [edxapp | writing celery worker supervisor script] ********************** 
+ok: [localhost]
+
+TASK: [edxapp | enable  supervisor script] ************************************ 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | enable edxapp supervisor script] ****************************** 
+ok: [localhost]
+
+TASK: [edxapp | enable celery worker supervisor script] *********************** 
+skipping: [localhost]
+
+TASK: [edxapp | syncdb and migrate] ******************************************* 
+changed: [localhost] => (item=lms)
+changed: [localhost] => (item=cms)
+
+TASK: [edxapp | gather  static assets with paver] ***************************** 
+changed: [localhost] => (item=lms)
+changed: [localhost] => (item=cms)
+
+TASK: [edxapp | clone the xml course repo] ************************************ 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | update course.xml] ******************************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | make symlinks for the static data] **************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | make symlinks so code works] ********************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | import courses with nostatic flag] **************************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | import courses including static data] ************************* 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | delete courses that were fully imported] ********************** 
+skipping: [localhost] => (item=EDXAPP_XML_COURSES)
+
+TASK: [edxapp | create an archive of course data and course static dirs] ****** 
+skipping: [localhost]
+
+TASK: [edxapp | upload archive to s3] ***************************************** 
+skipping: [localhost]
+
+TASK: [edxapp | remove archive from disk] ************************************* 
+skipping: [localhost]
+
+TASK: [edxapp | update supervisor configuration] ****************************** 
+ok: [localhost]
+
+TASK: [edxapp | ensure edxapp has started] ************************************ 
+ok: [localhost] => (item=lms)
+ok: [localhost] => (item=cms)
+
+TASK: [edxapp | ensure edxapp_workers has started] **************************** 
+skipping: [localhost] => (item={'queue': 'low', 'service_variant': 'cms', 'concurrency': 3})
+skipping: [localhost] => (item={'queue': 'default', 'service_variant': 'cms', 'concurrency': 4})
+skipping: [localhost] => (item={'queue': 'high', 'service_variant': 'cms', 'concurrency': 1})
+skipping: [localhost] => (item={'queue': 'low', 'service_variant': 'lms', 'concurrency': 1})
+skipping: [localhost] => (item={'queue': 'default', 'service_variant': 'lms', 'concurrency': 3})
+skipping: [localhost] => (item={'queue': 'high', 'service_variant': 'lms', 'concurrency': 4})
+skipping: [localhost] => (item={'queue': 'high_mem', 'service_variant': 'lms', 'concurrency': 2})
+
+TASK: [edxapp | create symlinks from the venv bin dir] ************************ 
+ok: [localhost] => (item=python)
+ok: [localhost] => (item=pip)
+ok: [localhost] => (item=django-admin.py)
+
+TASK: [edxapp | create symlinks from the repo dir] **************************** 
+ok: [localhost] => (item=manage.py)
+
+TASK: [edxapp | remove read-only ssh key] ************************************* 
+skipping: [localhost]
+
+TASK: [edxapp | get instance information] ************************************* 
+skipping: [localhost]
+
+TASK: [edxapp | tag instance with edx_platform version] *********************** 
+skipping: [localhost]
+
+TASK: [edxapp | tag instance  with edxapp theme version] ********************** 
+skipping: [localhost]
+
+TASK: [edxapp | set_fact edxapp_installed=true] ******************************* 
+ok: [localhost]
+
+TASK: [demo | create demo app and data dirs] ********************************** 
+ok: [localhost]
+
+TASK: [demo | check out the demo course] ************************************** 
+ok: [localhost]
+
+TASK: [demo | import demo course] ********************************************* 
+skipping: [localhost]
+
+TASK: [demo | create some test users and enroll them in the course] *********** 
+skipping: [localhost] => (item={'password': 'edx', 'email': 'honor@example.com', 'mode': 'honor'})
+skipping: [localhost] => (item={'password': 'edx', 'email': 'audit@example.com', 'mode': 'audit'})
+skipping: [localhost] => (item={'password': 'edx', 'email': 'verified@example.com', 'mode': 'verified'})
+
+TASK: [demo | create staff user] ********************************************** 
+skipping: [localhost]
+
+TASK: [demo | add test users to the certificate whitelist] ******************** 
+skipping: [localhost] => (item={'password': 'edx', 'email': 'honor@example.com', 'mode': 'honor'})
+skipping: [localhost] => (item={'password': 'edx', 'email': 'audit@example.com', 'mode': 'audit'})
+skipping: [localhost] => (item={'password': 'edx', 'email': 'verified@example.com', 'mode': 'verified'})
+
+TASK: [demo | seed the forums for the demo course] **************************** 
+skipping: [localhost] => (item={'password': 'edx', 'email': 'honor@example.com', 'mode': 'honor'})
+skipping: [localhost] => (item={'password': 'edx', 'email': 'audit@example.com', 'mode': 'audit'})
+skipping: [localhost] => (item={'password': 'edx', 'email': 'verified@example.com', 'mode': 'verified'})
+
+TASK: [rabbitmq | trust rabbit repository] ************************************ 
+ok: [localhost]
+
+TASK: [rabbitmq | install python-software-properties if debian] *************** 
+ok: [localhost]
+
+TASK: [rabbitmq | add rabbit repository] ************************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | fetch the rabbitmq server deb] ****************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | check if rabbit is installed] ******************************* 
+changed: [localhost]
+
+TASK: [rabbitmq | install rabbit package using gdebi] ************************* 
+skipping: [localhost]
+
+TASK: [rabbitmq | stop rabbit cluster] **************************************** 
+changed: [localhost]
+
+TASK: [rabbitmq | send sigterm to any running rabbitmq processes] ************* 
+changed: [localhost]
+
+TASK: [rabbitmq | create rabbitmq edx directories] **************************** 
+ok: [localhost] => (item=/edx/app/rabbitmq)
+ok: [localhost] => (item=/edx/var/log/rabbitmq)
+
+TASK: [rabbitmq | add queue monitoring script] ******************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | set up a cron job to run the script] ************************ 
+ok: [localhost]
+
+TASK: [rabbitmq | create cookie directory] ************************************ 
+ok: [localhost]
+
+TASK: [rabbitmq | add rabbitmq erlang cookie] ********************************* 
+ok: [localhost]
+
+TASK: [rabbitmq | create rabbitmq config directory] *************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | add rabbitmq environment configuration] ********************* 
+ok: [localhost]
+
+TASK: [rabbitmq | add rabbitmq cluster configuration] ************************* 
+ok: [localhost]
+
+TASK: [rabbitmq | install plugins] ******************************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | remove mnesia configuration] ******************************** 
+skipping: [localhost]
+
+TASK: [rabbitmq | start rabbit nodes] ***************************************** 
+changed: [localhost]
+
+TASK: [rabbitmq | wait for rabbit to start] *********************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | remove guest user] ****************************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | add vhosts] ************************************************* 
+ok: [localhost] => (item=/)
+
+TASK: [rabbitmq | add admin users] ******************************************** 
+ok: [localhost] => (item=[{'password': 'the example admin password', 'name': 'admin'}, '/'])
+ok: [localhost] => (item=[{'password': 'edx', 'name': 'edx'}, '/'])
+ok: [localhost] => (item=[{'password': 'celery', 'name': 'celery'}, '/'])
+
+TASK: [rabbitmq | make queues mirrored] *************************************** 
+skipping: [localhost]
+
+TASK: [rabbitmq | install admin tools] **************************************** 
+ok: [localhost]
+
+TASK: [rabbitmq | ensure rabbitmqadmin attributes] **************************** 
+ok: [localhost]
+
+TASK: [oraclejdk | download Oracle Java] ************************************** 
+skipping: [localhost]
+
+TASK: [oraclejdk | create jvm dir] ******************************************** 
+ok: [localhost]
+
+TASK: [oraclejdk | untar Oracle Java] ***************************************** 
+skipping: [localhost]
+
+TASK: [oraclejdk | create symlink expected by elasticsearch] ****************** 
+ok: [localhost]
+
+TASK: [oraclejdk | update alternatives java] ********************************** 
+ok: [localhost]
+
+TASK: [oraclejdk | update alternatives javac] ********************************* 
+ok: [localhost]
+
+TASK: [oraclejdk | update alternatives javaws] ******************************** 
+ok: [localhost]
+
+TASK: [oraclejdk | add JAVA_HOME for Oracle Java] ***************************** 
+ok: [localhost]
+
+TASK: [elasticsearch | download elasticsearch] ******************************** 
+ok: [localhost]
+
+TASK: [elasticsearch | install elasticsearch from local package] ************** 
+skipping: [localhost]
+
+TASK: [elasticsearch | create directories] ************************************ 
+ok: [localhost] => (item=/edx/var/elasticsearch)
+ok: [localhost] => (item=/edx/var/log/elasticsearch)
+ok: [localhost] => (item=/edx/etc/elasticsearch)
+
+TASK: [elasticsearch | update elasticsearch defaults] ************************* 
+skipping: [localhost]
+
+TASK: [elasticsearch | drop the elasticsearch config] ************************* 
+skipping: [localhost]
+
+TASK: [elasticsearch | drop the elasticsearch logging config] ***************** 
+skipping: [localhost]
+
+TASK: [elasticsearch | check if the bigdesk plugin is installed] ************** 
+ok: [localhost]
+
+TASK: [elasticsearch | install bigdesk plugin] ******************************** 
+skipping: [localhost]
+
+TASK: [elasticsearch | Ensure elasticsearch is enabled and started] *********** 
+ok: [localhost]
+
+TASK: [elasticsearch | Restart elastic when there has been an upgrade] ******** 
+skipping: [localhost]
+
+TASK: [rbenv | fail rbenv_user required for role] ***************************** 
+skipping: [localhost]
+
+TASK: [rbenv | fail rbenv_dir required for role] ****************************** 
+skipping: [localhost]
+
+TASK: [rbenv | fail rbenv_ruby_version required for role] ********************* 
+skipping: [localhost]
+
+TASK: [rbenv | create rbenv user {{common_web_user}}] ************************* 
+skipping: [localhost]
+
+TASK: [rbenv | create rbenv dir if it does not exist] ************************* 
+changed: [localhost]
+
+TASK: [rbenv | install build depends] ***************************************** 
+ok: [localhost] => (item=curl,build-essential,libcurl4-openssl-dev,libreadline-dev,libssl-dev,libxml2-dev,libxslt1-dev,zlib1g-dev)
+
+TASK: [rbenv | update rbenv repo] ********************************************* 
+changed: [localhost]
+
+TASK: [rbenv | ensure ruby_env exists] **************************************** 
+ok: [localhost]
+
+TASK: [rbenv | check ruby-build installed] ************************************ 
+changed: [localhost]
+
+TASK: [rbenv | if ruby-build exists, which versions we can install] *********** 
+changed: [localhost]
+
+TASK: [rbenv | create temporary directory] ************************************ 
+changed: [localhost]
+
+TASK: [rbenv | clone ruby-build repo] ***************************************** 
+changed: [localhost]
+
+TASK: [rbenv | install ruby-build] ******************************************** 
+changed: [localhost]
+
+TASK: [rbenv | remove temporary directory] ************************************ 
+changed: [localhost]
+
+TASK: [rbenv | check ruby {{forum_ruby_version}} installed] ******************* 
+changed: [localhost]
+
+TASK: [rbenv | install ruby {{forum_ruby_version}}] *************************** 
+skipping: [localhost]
+
+TASK: [rbenv | set global ruby {{forum_ruby_version}}] ************************ 
+changed: [localhost]
+
+TASK: [rbenv | install bundler] *********************************************** 
+changed: [localhost]
+
+TASK: [rbenv | remove rbenv version of rake] ********************************** 
+ok: [localhost]
+
+TASK: [rbenv | install rake gem] ********************************************** 
+changed: [localhost]
+
+TASK: [rbenv | rehash] ******************************************************** 
+changed: [localhost]
+
+TASK: [forum | create application user] *************************************** 
+ok: [localhost]
+
+TASK: [forum | create forum app dir] ****************************************** 
+changed: [localhost]
+
+TASK: [forum | setup the forum env] ******************************************* 
+ok: [localhost]
+
+TASK: [forum | create {{forum_data_dir}}] ************************************* 
+ok: [localhost]
+
+TASK: [forum | create the supervisor config] ********************************** 
+ok: [localhost]
+
+TASK: [forum | enable the supervisor config] ********************************** 
+ok: [localhost]
+
+TASK: [forum | create the supervisor wrapper] ********************************* 
+ok: [localhost]
+
+TASK: [forum | git checkout forum repo into {{forum_code_dir}}] *************** 
+ok: [localhost]
+
+TASK: [forum | install comments service bundle] ******************************* 
+changed: [localhost]
+
+TASK: [forum | update supervisor configuration] ******************************* 
+ok: [localhost]
+
+TASK: [forum | ensure forum is started] *************************************** 
+ok: [localhost]
+
+TASK: [forum | test that the required service are listening] ****************** 
+ok: [localhost] => (item={'host': u'localhost', 'port': u'9200', 'service': 'elasticsearch'})
+
+TASK: [forum | test that mongo replica set members are listing] *************** 
+ok: [localhost] => (item=localhost)
+
+TASK: [forum | get instance information] ************************************** 
+skipping: [localhost]
+
+TASK: [forum | tag instance] ************************************************** 
+skipping: [localhost]
+
+TASK: [forum | set_fact forum_installed=true] ********************************* 
+ok: [localhost]
+
+TASK: [xqueue | create application user] ************************************** 
+ok: [localhost]
+
+TASK: [xqueue | create xqueue app and venv dir] ******************************* 
+ok: [localhost] => (item=/edx/app/xqueue)
+ok: [localhost] => (item=/edx/app/xqueue/venvs)
+
+TASK: [xqueue | install a bunch of system packages on which xqueue relies] **** 
+ok: [localhost]
+
+TASK: [xqueue | writing supervisor scripts - xqueue, xqueue consumer] ********* 
+ok: [localhost] => (item=xqueue)
+ok: [localhost] => (item=xqueue_consumer)
+
+TASK: [xqueue | enabling supervisor scripts - xqueue, xqueue consumer] ******** 
+ok: [localhost] => (item=xqueue)
+ok: [localhost] => (item=xqueue_consumer)
+
+TASK: [xqueue | create xqueue application config] ***************************** 
+ok: [localhost]
+
+TASK: [xqueue | create xqueue auth file] ************************************** 
+ok: [localhost]
+
+TASK: [xqueue | git checkout xqueue repo into xqueue_code_dir] **************** 
+ok: [localhost]
+
+TASK: [xqueue | install python pre-requirements] ****************************** 
+ok: [localhost]
+
+TASK: [xqueue | install python post-requirements] ***************************** 
+changed: [localhost]
+
+TASK: [xqueue | syncdb and migrate] ******************************************* 
+changed: [localhost]
+
+TASK: [xqueue | syncdb and migrate] ******************************************* 
+skipping: [localhost]
+
+TASK: [xqueue | create users] ************************************************* 
+changed: [localhost]
+
+TASK: [xqueue | update supervisor configuration] ****************************** 
+ok: [localhost]
+
+TASK: [xqueue | ensure xqueue, consumer is running] *************************** 
+ok: [localhost] => (item=xqueue)
+ok: [localhost] => (item=xqueue_consumer)
+
+TASK: [xqueue | create a symlink for venv python] ***************************** 
+ok: [localhost] => (item=python)
+ok: [localhost] => (item=pip)
+
+TASK: [xqueue | get instance information] ************************************* 
+skipping: [localhost]
+
+TASK: [xqueue | tag instance] ************************************************* 
+skipping: [localhost]
+
+TASK: [xqueue | set_fact xqueue_installed=true] ******************************* 
+ok: [localhost]
+
+TASK: [ora | create application user] ***************************************** 
+ok: [localhost]
+
+TASK: [ora | create ora app dir] ********************************************** 
+ok: [localhost] => (item=/edx/app/ora/venvs)
+ok: [localhost] => (item=/edx/app/ora)
+
+TASK: [ora | create ora data dir, owned by {{common_web_user}}] *************** 
+ok: [localhost] => (item=/edx/var/ora)
+ok: [localhost] => (item=/edx/var/ora/course)
+ok: [localhost] => (item=/edx/app/ora/ml_models)
+
+TASK: [ora | install debian packages that ora needs] ************************** 
+ok: [localhost] => (item=python-software-properties,pkg-config,curl,git,python-virtualenv,build-essential,python-dev,gfortran,libfreetype6-dev,libpng12-dev,libxml2-dev,libxslt1-dev,yui-compressor,graphviz,graphviz-dev,libmysqlclient-dev,libreadline6,libreadline6-dev,super,aspell,libblas3gf,libblas-dev,liblapack3gf,liblapack-dev,libatlas-base-dev,redis-server)
+
+TASK: [ora | install debian packages for ease that ora needs] ***************** 
+ok: [localhost] => (item=python-pip,gcc,g++,gfortran,libblas3gf,libblas-dev,liblapack3gf,liblapack-dev,libatlas-base-dev,libxml2-dev,libxslt1-dev,aspell,python)
+
+TASK: [ora | create supervisor scripts - ora, ora_celery] ********************* 
+ok: [localhost] => (item=ora)
+ok: [localhost] => (item=ora_celery)
+
+TASK: [ora | enable supervisor scripts - ora, ora_celery] ********************* 
+ok: [localhost] => (item=ora)
+ok: [localhost] => (item=ora_celery)
+
+TASK: [ora | git checkout ease repo into its base dir] ************************ 
+ok: [localhost]
+
+TASK: [ora | install ease system packages] ************************************ 
+ok: [localhost] => (item=python-pip,gcc,g++,gfortran,libblas3gf,libblas-dev,liblapack3gf,liblapack-dev,libatlas-base-dev,libxml2-dev,libxslt1-dev,aspell,python)
+
+TASK: [ora | install ease python pre-requirements] **************************** 
+ok: [localhost]
+
+TASK: [ora | install ease python post-requirements] *************************** 
+changed: [localhost]
+
+TASK: [ora | install ease python package] ************************************* 
+changed: [localhost]
+
+TASK: [ora | create ora application config] *********************************** 
+ok: [localhost]
+
+TASK: [ora | create ora auth file] ******************************************** 
+ok: [localhost]
+
+TASK: [ora | setup the ora env] *********************************************** 
+ok: [localhost]
+
+TASK: [ora | git checkout ora repo into {{ora_app_dir}}] ********************** 
+ok: [localhost]
+
+TASK: [ora | install python pre-requirements] ********************************* 
+ok: [localhost]
+
+TASK: [ora | install python post-requirements] ******************************** 
+changed: [localhost]
+
+TASK: [ora | change memory commit settings -- needed for redis] *************** 
+changed: [localhost]
+
+TASK: [ora | syncdb and migrate] ********************************************** 
+changed: [localhost]
+
+TASK: [ora | create users] **************************************************** 
+changed: [localhost]
+
+TASK: [ora | update supervisor configuration] ********************************* 
+ok: [localhost]
+
+TASK: [ora | ensure ora is started] ******************************************* 
+ok: [localhost]
+
+TASK: [ora | ensure ora_celery is started] ************************************ 
+ok: [localhost]
+
+TASK: [ora | create a symlink for venv python] ******************************** 
+ok: [localhost] => (item=python)
+ok: [localhost] => (item=pip)
+
+TASK: [ora | set_fact ora_installed=true] ************************************* 
+ok: [localhost]
+
+TASK: [certs | create application user] *************************************** 
+ok: [localhost]
+
+TASK: [certs | create certs app dirs] ***************************************** 
+ok: [localhost] => (item=/edx/app/certs)
+ok: [localhost] => (item=/edx/app/certs/.ssh)
+ok: [localhost] => (item=/edx/app/certs/venvs)
+ok: [localhost] => (item=/edx/var/certs)
+
+TASK: [certs | create certs web root] ***************************************** 
+ok: [localhost]
+
+TASK: [certs | create certs gpg dir] ****************************************** 
+ok: [localhost]
+
+TASK: [certs | copy the private gpg signing key] ****************************** 
+ok: [localhost]
+
+TASK: [certs | copy the pgp trust export] ************************************* 
+ok: [localhost]
+
+TASK: [certs | load the gpg key] ********************************************** 
+skipping: [localhost]
+
+TASK: [certs | import the trust export] *************************************** 
+skipping: [localhost]
+
+TASK: [certs | create certificate application config] ************************* 
+ok: [localhost]
+
+TASK: [certs | create certificate auth file] ********************************** 
+ok: [localhost]
+
+TASK: [certs | writing supervisor script for certificates] ******************** 
+ok: [localhost]
+
+TASK: [certs | enable supervisor script for certificates] ********************* 
+ok: [localhost]
+
+TASK: [certs | create ssh script for git] ************************************* 
+ok: [localhost]
+
+TASK: [certs | install read-only ssh key for the certs repo] ****************** 
+skipping: [localhost]
+
+TASK: [certs | checkout certificates repo into {{certs_code_dir}}] ************ 
+ok: [localhost]
+
+TASK: [certs | remove read-only ssh key for the certs repo] ******************* 
+skipping: [localhost]
+
+TASK: [certs | install python requirements] *********************************** 
+ok: [localhost]
+
+TASK: [certs | update supervisor configuration] ******************************* 
+ok: [localhost]
+
+TASK: [certs | ensure certs has started] ************************************** 
+ok: [localhost]
+
+TASK: [certs | create a symlink for venv python] ****************************** 
+ok: [localhost] => (item=python)
+ok: [localhost] => (item=pip)
+
+TASK: [certs | set_fact certs_installed=true] ********************************* 
+ok: [localhost]
+
+TASK: [aws | create data directories] ***************************************** 
+ok: [localhost] => (item=/edx/var/aws)
+ok: [localhost] => (item=/edx/var/log/aws)
+
+TASK: [aws | create app directory] ******************************************** 
+ok: [localhost] => (item=/edx/app/aws)
+
+TASK: [aws | install system packages] ***************************************** 
+ok: [localhost]
+
+TASK: [aws | install aws python packages] ************************************* 
+ok: [localhost] => (item=https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz)
+ok: [localhost] => (item=awscli==1.4.2)
+ok: [localhost] => (item=boto==2.32.0)
+
+TASK: [aws | get s3cmd] ******************************************************* 
+ok: [localhost]
+
+TASK: [aws | untar s3cmd] ***************************************************** 
+skipping: [localhost]
+
+TASK: [aws | create symlink for s3cmd] **************************************** 
+ok: [localhost]
+
+TASK: [aws | create s3 log sync script] *************************************** 
+skipping: [localhost]
+
+TASK: [aws | create symlink for s3 log sync script] *************************** 
+skipping: [localhost]
+
+TASK: [aws | run s3 log sync script on supervisor shutdown] ******************* 
+skipping: [localhost]
+
+TASK: [aws | cronjob for s3 log sync] ***************************************** 
+skipping: [localhost]
+
+TASK: [edx_ansible | create application user] ********************************* 
+ok: [localhost]
+
+TASK: [edx_ansible | create edx_ansible app and venv dir] ********************* 
+ok: [localhost] => (item=/edx/app/edx_ansible)
+ok: [localhost] => (item=/edx/var/edx_ansible)
+ok: [localhost] => (item=/edx/app/edx_ansible/venvs)
+
+TASK: [edx_ansible | install a bunch of system packages on which edx_ansible relies] *** 
+ok: [localhost]
+
+TASK: [edx_ansible | git checkout edx_ansible repo into edx_ansible_code_dir] *** 
+ok: [localhost]
+
+TASK: [edx_ansible | install edx_ansible venv requirements] ******************* 
+ok: [localhost]
+
+TASK: [edx_ansible | create update script] ************************************ 
+ok: [localhost]
+
+TASK: [edx_ansible | create a symlink for update.sh] ************************** 
+ok: [localhost]
+
+TASK: [edx_ansible | create a symlink for ansible-playbook] ******************* 
+ok: [localhost]
+
+TASK: [edx_ansible | create a symlink for the playbooks dir] ****************** 
+ok: [localhost]
+
+TASK: [edx_ansible | dump all vars to yaml] *********************************** 
+skipping: [localhost]
+
+TASK: [edx_ansible | create symlink for config file] ************************** 
+skipping: [localhost]
+
+TASK: [edx_ansible | clean up var file, removing all version vars and internal ansible vars (anything not caps)] *** 
+skipping: [localhost]
+
+TASK: [datadog | install debian needed pkgs] ********************************** 
+skipping: [localhost]
+
+TASK: [datadog | add apt key] ************************************************* 
+skipping: [localhost]
+
+TASK: [datadog | install apt repository] ************************************** 
+skipping: [localhost]
+
+TASK: [datadog | install datadog agent] *************************************** 
+skipping: [localhost]
+
+TASK: [datadog | bootstrap config] ******************************************** 
+skipping: [localhost]
+
+TASK: [datadog | update api-key] ********************************************** 
+skipping: [localhost]
+
+TASK: [datadog | ensure started and enabled] ********************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | install splunkforwarder specific system packages] **** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | download the splunk deb] ***************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | install splunk forwarder] **************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | create splunk user] ********************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | start splunk manually] ******************************* 
+skipping: [localhost]
+
+TASK: [splunkforwarder | stop splunk manually] ******************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | create boot script] ********************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | update admin pasword] ******************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | add chkconfig to init script] ************************ 
+skipping: [localhost]
+
+TASK: [splunkforwarder | ensure splunk forder permissions] ******************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | drop input configuration] **************************** 
+skipping: [localhost]
+
+TASK: [splunkforwarder | create outputs config file] ************************** 
+skipping: [localhost]
+
+TASK: [newrelic | add apt key] ************************************************ 
+skipping: [localhost]
+
+TASK: [newrelic | Configure the New Relic Servers yum repository] ************* 
+skipping: [localhost]
+
+TASK: [newrelic | install apt repository] ************************************* 
+skipping: [localhost]
+
+TASK: [newrelic | install newrelic agent (apt)] ******************************* 
+skipping: [localhost]
+
+TASK: [newrelic | Install newrelic related system packages for Ubuntu] ******** 
+skipping: [localhost]
+
+TASK: [newrelic | Install newrelic related system packages for Amazon] ******** 
+skipping: [localhost]
+
+TASK: [newrelic | configure the agent with the license key] ******************* 
+skipping: [localhost]
+
+TASK: [newrelic | ensure started and enabled] ********************************* 
+skipping: [localhost]
+
+NOTIFIED: [nginx | restart nginx] ********************************************* 
+changed: [localhost]
+
+NOTIFIED: [edxapp | restart edxapp] ******************************************* 
+skipping: [localhost] => (item=lms)
+skipping: [localhost] => (item=cms)
+
+NOTIFIED: [edxapp | restart edxapp_workers] *********************************** 
+changed: [localhost] => (item={'queue': 'low', 'service_variant': 'cms', 'concurrency': 3})
+changed: [localhost] => (item={'queue': 'default', 'service_variant': 'cms', 'concurrency': 4})
+changed: [localhost] => (item={'queue': 'high', 'service_variant': 'cms', 'concurrency': 1})
+changed: [localhost] => (item={'queue': 'low', 'service_variant': 'lms', 'concurrency': 1})
+changed: [localhost] => (item={'queue': 'default', 'service_variant': 'lms', 'concurrency': 3})
+changed: [localhost] => (item={'queue': 'high', 'service_variant': 'lms', 'concurrency': 4})
+changed: [localhost] => (item={'queue': 'high_mem', 'service_variant': 'lms', 'concurrency': 2})
+
+NOTIFIED: [forum | restart the forum service] ********************************* 
+changed: [localhost]
+
+NOTIFIED: [xqueue | restart xqueue] ******************************************* 
+changed: [localhost] => (item=xqueue)
+changed: [localhost] => (item=xqueue_consumer)
+
+NOTIFIED: [ora | restart ora] ************************************************* 
+changed: [localhost]
+
+NOTIFIED: [ora | restart ora_celery] ****************************************** 
+changed: [localhost]
+
+PLAY RECAP ******************************************************************** 
+localhost                  : ok=405  changed=85   unreachable=0    failed=0   
+

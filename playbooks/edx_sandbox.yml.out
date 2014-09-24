@@ -1,9 +1,22 @@
+#The fullstack configuration has the following components:
+#LMS (student facing website)
+#Studio (course authoring)
+#Xqueue (queuing server that uses RabbitMQ for custom graders)
+#Forums / elasticsearch / ruby (discussion forums)
+#Demo course
+#ORA - take a submission, passes it through machine learning grading, peer grading, and staff grading as appropriate
+#Discern - machine-learning-based automated textual classification as an API service
+#Ease - a library that allows for machine learning based classification of textual content
+#call sequence 
+
+#cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+
 
 PLAY [Configure instance(s)] ************************************************** 
 
 GATHERING FACTS *************************************************************** 
 ok: [localhost]
-
+#nginx depended on user, user depends on commom 
 TASK: [user | debug var=user_info] ******************************************** 
 ok: [localhost] => {
     "item": "", 
@@ -57,7 +70,7 @@ skipping: [localhost]
 
 TASK: [user | create allowed command links] *********************************** 
 skipping: [localhost]
-
+#nginx depended on user, user depends on commom (meta)
 TASK: [common | Add user www-data] ******************************************** 
 ok: [localhost]
 
@@ -132,7 +145,7 @@ ok: [localhost]
 
 TASK: [common | update ssh config] ******************************************** 
 ok: [localhost]
-
+#role nginx ? alton_app_dir: "{{ COMMON_APP_DIR }}/alton"
 TASK: [nginx | create nginx app dirs] ***************************************** 
 ok: [localhost] => (item=/edx/app/nginx)
 ok: [localhost] => (item=/edx/app/nginx/sites-available)

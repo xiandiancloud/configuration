@@ -2,7 +2,7 @@
 
 ---
 - name: Installs shib and dependencies from apt
-  apt: pkg={{item}} install_recommends=no state=present update_cache=yes
+  apt: pkg={{item}} install_recommends=no state=present update_cache=no
   with_items:
     - shibboleth-sp2-schemas
     - libshibsp-dev

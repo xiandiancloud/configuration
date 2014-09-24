@@ -65,7 +65,7 @@
   apt_repository: repo="{{ edxapp_chrislea_ppa }}"
 
 - name: install system packages on which LMS and CMS rely
-  apt: pkg={{','.join(edxapp_debian_pkgs)}} state=present update_cache=yes
+  apt: pkg={{','.join(edxapp_debian_pkgs)}} state=present update_cache=no
   notify:
   - "restart edxapp"
   - "restart edxapp_workers"

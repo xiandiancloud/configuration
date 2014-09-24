@@ -23,7 +23,7 @@
 
 # Need to install python-pycurl to use Ansible's apt_repository module
 - name: Install python-pycurl
-  apt: pkg=python-pycurl state=present update_cache=yes
+  apt: pkg=python-pycurl state=present update_cache=no
 
 # Ensure that we get a current version of Git
 # GitHub requires version 1.7.10 or later
@@ -35,7 +35,7 @@
   # do this before log dir setup; rsyslog package guarantees syslog user present
   apt: >
     pkg={{','.join(common_debian_pkgs)}} install_recommends=yes
-    state=present update_cache=yes
+    state=present update_cache=no
 
 - name: Create common log directory
   file: >

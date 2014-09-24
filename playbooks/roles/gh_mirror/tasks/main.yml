@@ -36,7 +36,7 @@
   apt: >
     pkg={{ ",".join(gh_mirror_debian_pkgs) }}
     state=present
-    update_cache=yes
+    update_cache=no
 
 - name: create gh_mirror user
   user: >

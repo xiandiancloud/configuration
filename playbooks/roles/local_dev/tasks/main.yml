@@ -2,7 +2,7 @@
 - name: install useful system packages
   apt:
     pkg={{','.join(local_dev_pkgs)}} install_recommends=yes
-    state=present update_cache=yes
+    state=present update_cache=no
 
 - name: set login shell for app accounts
   user: name={{ item.user }} shell="/bin/bash"

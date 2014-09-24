@@ -3,7 +3,7 @@
 ---
 - name: install system packages
   apt: pkg={{','.join(browser_deb_pkgs)}}
-       state=present update_cache=yes
+       state=present update_cache=no
 
 - name: download browser debian packages from S3
   get_url: dest="/tmp/{{ item.name }}" url="{{ item.url }}"

@@ -36,7 +36,7 @@
     - fail: msg="db_root_pass is not defined"
       when: db_root_pass is not defined
     - name: install python mysqldb module
-      apt: pkg={{item}} install_recommends=no state=present update_cache=yes
+      apt: pkg={{item}} install_recommends=no state=present update_cache=no
       sudo: yes
       with_items:
         - python-mysqldb

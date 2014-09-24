@@ -22,7 +22,7 @@
 
 - name: Create clone of edx-platform
   git: >
-    repo=https://github.com/edx/edx-platform.git
+    repo=https://github.com/xiandiancloud/edx-platform.git
     dest={{ test_build_server_repo_path }}/edx-platform-clone
     version=master
   sudo_user: "{{ test_build_server_user }}"

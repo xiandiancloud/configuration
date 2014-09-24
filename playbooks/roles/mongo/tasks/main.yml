@@ -20,7 +20,7 @@
   apt: >
     pkg=mongodb-10gen={{ mongo_version }}
     state=present install_recommends=yes
-    force=yes update_cache=yes
+    force=yes update_cache=no
 
 - name: create mongo dirs
   file: >

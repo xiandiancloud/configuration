@@ -46,7 +46,7 @@
   apt: >
     pkg={{','.join(aws_debian_pkgs)}}
     state=present
-    update_cache=yes
+    update_cache=no
 
 - name: install aws python packages
   pip: >

@@ -10,6 +10,18 @@
 #call sequence 
 
 #cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+#	1. 安装 Ubuntu	
+#	2. Ubuntu 修改souces.list/python pypi	
+#	3. 复制*.deb 到apt/archive下，复制jdk..到/tmp	
+#	4. update	
+#	5. 脚本分分解,edxapp再分解
+#	6. git edxplaform采用copy.（采用官网测试）	
+#	7. 分布测试	
+#	8.本地安装依赖改为本地下载：	
+#	9.网络安装依赖	整理所有apt安装	
+#	10.整理所有python安装	
+#	11.整理所有git下载	
+
 
 
 PLAY [Configure instance(s)] ************************************************** 
@@ -229,7 +241,7 @@ ok: [localhost]
 
 TASK: [nginx | make sure nginx has started] *********************************** 
 ok: [localhost]
-
+#edxlocal task
 TASK: [edxlocal | install packages needed for single server] ****************** 
 ok: [localhost]
 
@@ -278,7 +290,7 @@ ok: [localhost]
 
 TASK: [edxlocal | install memcached] ****************************************** 
 ok: [localhost]
-
+#mongo db
 TASK: [mongo | install python pymongo for mongo_user ansible module] ********** 
 ok: [localhost]
 
@@ -323,7 +335,7 @@ skipping: [localhost]
 TASK: [mongo | create a mongodb user] ***************************************** 
 skipping: [localhost] => (item={'password': 'password', 'user': 'cs_comments_service', 'database': 'cs_comments_service'})
 skipping: [localhost] => (item={'password': 'password', 'user': 'edxapp', 'database': 'edxapp'})
-
+#supervisor
 TASK: [supervisor | create application user] ********************************** 
 ok: [localhost]
 

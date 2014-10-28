@@ -14,7 +14,7 @@
 INSIGHTS_MEMCACHE: [ 'localhost:11211' ]
 
 INSIGHTS_CONFIG:
-  # assumes you are running https://github.com/edx/edx-analytics-data-api.git
+  # assumes you are running https://github.com/xiandiancloud/edx-analytics-data-api.git
   # on port 8100
   DATA_API_URL: 'http://127.0.0.1:8100/api/v0'
   DATA_API_AUTH_TOKEN: 'edx'

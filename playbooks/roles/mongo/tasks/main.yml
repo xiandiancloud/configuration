@@ -3,7 +3,7 @@
 - name: install python pymongo for mongo_user ansible module
   pip: >
     name=pymongo state=present
-    version=2.6.3 extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    version=2.6.3 extra_args="--download-cahce /home/xdmooc/pip-cache/"
 
 - name: add the mongodb signing key
   apt_key: >
@@ -81,7 +81,7 @@
   pip: >
     name="s3cmd"
     state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cahce /home/xdmooc/pip-cache/"
   when: MONGO_S3_BACKUP
  
 - name: configure s3cmd

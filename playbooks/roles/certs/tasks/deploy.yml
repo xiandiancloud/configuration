@@ -63,7 +63,7 @@
 - name : install python requirements
   pip: >
     requirements="{{ certs_requirements_file }}" virtualenv="{{ certs_venv_dir }}" state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   sudo_user: "{{ certs_user }}"
   notify: restart certs
 

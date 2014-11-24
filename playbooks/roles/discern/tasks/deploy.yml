@@ -52,7 +52,7 @@
 - name : install python pre-requirements for discern and ease
   pip: >
     requirements={{item}} virtualenv={{ discern_venv_dir }} state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   sudo_user: "{{ discern_user }}"
   notify:
     - restart discern
@@ -63,7 +63,7 @@
 - name : install python requirements for discern and ease
   pip: >
     requirements={{item}} virtualenv={{ discern_venv_dir }} state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   sudo_user: "{{ discern_user }}"
   notify:
     - restart discern

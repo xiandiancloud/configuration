@@ -25,7 +25,7 @@
 - name: install bastion python packages
   pip: >
     name="{{ item }}" state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   with_items: bastion_pip_pkgs
 
 # These templates rely on there being a global

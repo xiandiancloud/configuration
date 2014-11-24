@@ -32,7 +32,7 @@
     name="{{ item }}"
     virtualenv="{{ flower_venv_dir }}"
     state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cahce /home/xdmooc/pip-cache/"
   sudo_user: "{{ flower_user }}"
   environment: "{{ flower_environment }}"
   with_items: "flower_python_reqs"

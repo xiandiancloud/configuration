@@ -27,7 +27,7 @@
     requirements="{{ alton_requirements_file }}"
     virtualenv="{{ alton_venv_dir }}"
     state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   sudo_user: "{{ alton_user }}"
   notify: restart alton
 

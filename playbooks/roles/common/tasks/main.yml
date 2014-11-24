@@ -50,7 +50,7 @@
 - name: pip install virtualenv
   pip: >
     name="{{ item }}" state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }}"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   with_items: common_pip_pkgs
 
 - name: Install rsyslog configuration for edX

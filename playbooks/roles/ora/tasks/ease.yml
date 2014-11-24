@@ -20,7 +20,7 @@
 - name: install ease python pre-requirements
   pip: >
     requirements="{{ora_ease_pre_requirements_file}}" virtualenv="{{ora_ease_venv_dir}}" state=present
-    extra_args="--download-cahce /home/xdmooc/pip-cache/"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   sudo_user: "{{ ora_user }}"
   notify:
     - restart ora
@@ -30,7 +30,7 @@
 - name: install ease python post-requirements
   pip: >
     requirements="{{ora_ease_post_requirements_file}}" virtualenv="{{ora_ease_venv_dir}}" state=present
-    extra_args="--download-cahce /home/xdmooc/pip-cache/"
+    extra_args="--download-cache /home/xdmooc/pip-cache/"
   sudo_user: "{{ ora_user }}"
   notify:
     - restart ora

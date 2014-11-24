@@ -41,7 +41,7 @@
 - name : install python pre-requirements
   pip: >
     requirements="{{ xqueue_pre_requirements_file }}" virtualenv="{{ xqueue_venv_dir }}" state=present
-    extra_args="-i {{ COMMON_PYPI_MIRROR_URL }} --exists-action w"
+    extra_args="--download-cache /home/xdmooc/pip-cache --exists-action w"
   sudo_user: "{{ xqueue_user }}"
   notify:
     - restart xqueue

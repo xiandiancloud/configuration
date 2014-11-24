@@ -3,7 +3,7 @@
 - name: install python pymongo for mongo_user ansible module
   pip: >
     name=pymongo state=present
-    version=2.6.3 extra_args="--download-cahce /home/xdmooc/pip-cache/"
+    version=2.6.3 extra_args="--download-cache /home/xdmooc/pip-cache/"
 
 - name: add the mongodb signing key
   apt_key: >

@@ -59,7 +59,7 @@ XQWATCHER_GIT_IDENTITY: |
 # depends upon Newrelic being enabled via COMMON_ENABLE_NEWRELIC
 # and a key being provided via NEWRELIC_LICENSE_KEY
 XQWATCHER_NEWRELIC_APPNAME: "{{ COMMON_DEPLOYMENT }}-{{ COMMON_ENVIRONMENT }}-xqwatcher"
-XQWATCHER_PIP_EXTRA_ARGS: "--download-cahce /home/xdmooc/pip-cache/"
+XQWATCHER_PIP_EXTRA_ARGS: "--download-cache /home/xdmooc/pip-cache/"
 #
 #
 # vars are namespace with the module name.
